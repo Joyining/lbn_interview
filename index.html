@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            background: url('images/background.jpg') no-repeat;
+            background-size: cover;
+            width: 100vw;
+            height: 100vh;
+            padding-top: 30vh;
+        }
+        .loans{
+            width: 60%;
+            /* height: 50%; */
+            /* border: 2px solid red; */
+            margin: 0 auto;
+            /* margin-top: 10%; */
+            background-color: azure;
+            padding: 10px;
+            /* position: relative; */
+        }
+         @media screen and (max-width: 600px) {
+             .loans{
+                width: 100%;
+             }
+         }
+        .heading{
+            font-weight: bold;
+            font-size: 2rem;
+            color: darkblue;
+        }
+        .tab_wrap{
+            display: flex;
+            justify-content: space-between;
+        }
+        .tab{
+            display: block;
+            text-decoration: none;
+            color: red;
+            
+        }
+        .tab.active{
+            color: lightskyblue;
+        }
+        .triangle{
+            clip-path: polygon(50% 0, 0% 100%, 100% 100%);
+            width: 50px;
+            height: 20px;
+            background-color: lightgray;
+            /* position: absolute; */
+            /* left: 0; */
+        }
+         @media screen and (max-width: 600px) {
+             .triangle{
+                 display: none;
+             }
+         }
+        .check_rate_wrap{
+            background-color: lightgray;
+            padding: 10px;
+        }
+        .layer_1, .layer_2, .layer_3{
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        @media screen and (max-width: 600px) {
+            .layer_1, .layer_2, .layer_3{
+                display: block;
+            }
+        }
+        .description{
+            font-weight: bold;
+            color: darkblue;
+        }
+        .privacy{
+            /* display: block; */
+            width: 15%;
+        }
+        @media screen and (max-width: 600px) {
+            .privacy{
+                display: none;
+            }
+        }
+        .privacy img{
+            width: 100%;
+            height: 100%;
+        }
+        .loans_input{
+            width: 40%;
+            margin: 5px;
+        }
+        @media screen and (max-width: 600px) {
+            .loans_input{
+                width: 90%;
+            }
+        }
+        button{
+            background-color: red;
+            width: 20%;
+            height: 30px;
+            line-height: 30px;
+            color: azure;
+            text-align: center;
+        }
+        @media screen and (max-width: 600px) {
+            button{
+                width: 90%;
+            }
+        }       
+        .email_icon{
+            width: 15px;
+            margin-right: 5px;
+        }
+        .email_icon img{
+            width: 100%;
+            height: 100%;
+        }
+        .layer_3{
+            justify-content: center;
+        }
+        @media screen and (max-width: 600px){
+            .layer_3{
+                display: flex;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="loans">
+            <div class="heading">Personal loans up to $40,000</div>
+            <div class="tab_wrap">
+                    <a class="tab active" href="">Personal Loans</a>
+                    <a class="tab" href="">Small Business Loans</a>
+                    <a class="tab" href="">Auto Refinancing</a>
+            </div>
+            <div class="triangle"></div>
+            <div class="check_rate_wrap">
+                <div class="layer_1">
+                    <div class="description">Check your rate. It won't impact your credit score.</div>
+                    <figure class="privacy"><img src="images/privacy.png" alt=""></figure>
+                </div>
+                <div class="layer_2">
+                    <input id="amount" class="loans_input" type="text" name="currency" placeholder="How much do you need?">
+                    <select id="purpose" class="loans_input">
+                        <option value="">What's the money for?</option>
+                        <option value="housing">Housing</option>
+                        <option value="wedding">Wedding</option>
+                        <option value="debt_consolidation">Debt Consolidation</option>
+                    </select>
+                    <button id="check_your_rate">Check Your Rate</button>
+                </div>
+                <div class="layer_3">
+                    <figure class="email_icon"><img src="images/email.png" alt=""></figure>
+                    <div class="respond">Respond to a mail offer</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        let check_rate = ()=>{
+            const check_rate_btn = document.querySelector('#check_your_rate');
+            let amount = document.querySelector('#amount').value;
+            let purpose = document.querySelector('#purpose').value;
+            check_rate_btn.addEventListener('click', function(){
+                console.log(amount);
+                console.log(purpose);
+                fetch(`https://www.lnb.com.tw/borrow.html?amount=${amount}&purpose=${purpose}`)
+                    .then(function (response) {
+                        
+                    })
+            })
+        };
+        check_rate();
+    </script>
+</body>
+</html>
